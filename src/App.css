@@ -1,27 +1,64 @@
-.starting-form-container {
+nav {
+  position: sticky;
+  height: 70px;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 30px;
+  justify-content: space-around;
+  background-color: #f2f6fc;
+  border-bottom: 1px solid #057fd0;
 }
 
-.add-students-form {
-  width: 70%;
+nav div {
+  width: 33%;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  letter-spacing: 5px;
 }
+
+nav div:hover {
+	background-color:#d9e9ff;
+}
+
+.main-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-container h1 {
+  padding: 20px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 70px;
+  font-style: oblique;
+  letter-spacing: 5px;
+  color: #F76C6C;
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -webkit-text-stroke: 0.1px black; /* width and color */
+
+}
+
+.main-container img {
+  width: 650px;
+}
+
 
 input {
   border: 0px solid white;
   border-bottom: 1px solid #057fd0;
   width: 70%;
-  height: 50px;
+  height: 150px;
   font-family: 'Gochi Hand', cursive;
-  font-size: 40px;
+  font-size: 100px;
   letter-spacing: 5px;
 }
 
 button {
   font-family: 'Gochi Hand', cursive;
-  font-size: 30px;
+  font-size: 60px;
+  height: 140px;
   letter-spacing: 5px;
 	box-shadow: 0px 1px 0px 0px #f0f7fa;
 	background-color: white;
@@ -47,24 +84,29 @@ button:active {
 	top:1px;
 }
 
-.show-students {
-  display: flex;
-  margin-left: 10%;
-}
-
-.student-name {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 30px;
-  padding: 20px;
-}
-
-.split-button-options {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  justify-content: space-around;
-}
 
 hr {
   border-bottom:1px solid #057fd0;
+}
+
+.full-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.count-value {
+  font-family: 'Gochi Hand', cursive;
+  text-align: center;
+  font-size: 200px;
+}
+
+.current-value {
+  font-family: 'Gochi Hand', cursive;
+  text-align: center;
+  font-size: 70px;
+}
+
+.input-counter {
+  width: 150px;
 }

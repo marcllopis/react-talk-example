@@ -1,79 +1,105 @@
 import React, { Component } from 'react';
-
-import AddStudentsForm from './components/AddStudentsForm/AddStudentsForm';
-import Button from './components/shared/Button';
-import ButtonsGroups from './components/ButtonSGroup/ButtonsGroup';
-
-import { fullClass } from './utils/students';
-import { shuffle } from './utils/functions';
 import './App.css';
 
 
 class App extends Component {
 
   state = {
-    students: [],
-    splittedGroups: [],
-    studentName: ""
+    showCounter: true,
+    showState: false,
+    showForm: false,
+    counter: 0,
   }
 
-  getFullClass = () => this.setState({ students: fullClass })
+  showCounterSection = () => this.setState({
+    showCounter: true,
+    showState: false,
+    showForm: false,
+  })
 
-  addStudent = e => this.setState({ studentName: e.target.value })
+  showStateSection = () => this.setState({
+    showCounter: false,
+    showState: true,
+    showForm: false,
+  })
 
-  getSingleStudent = e => {
-    e.preventDefault();
-    let studentsCopy = [...this.state.students]
-    studentsCopy.push(this.state.studentName)
-    this.setState({ students: studentsCopy, studentName: "" })
-  }
+  showFormSection = () => this.setState({
+    showCounter: false,
+    showState: false,
+    showForm: true,
+  })
 
-  splitInGroups = e => {
-    let copyOfStudents = [...this.state.students];
-    shuffle(copyOfStudents)
-    let arrayHelper = [];
-    while (copyOfStudents.length > 0) arrayHelper.push(copyOfStudents.splice(0, e.target.id))
-    this.setState({ splittedGroups: arrayHelper })
-  }
+  increase = () => this.setState({
+    counter: this.state.counter + 1
+  })
+
+  decrease = () => this.setState({
+    counter: this.state.counter - 1
+  })
 
   render() {
     return (
       <div>
-        <div className="starting-form-container">
-          <div className="add-students-form">
-            <AddStudentsForm
-              getSingleStudent={this.getSingleStudent}
-              studentName={this.state.studentName}
-              addStudent={this.addStudent}
-            />
+        <nav>
+          <div onClick={this.showCounterSection}>
+            Contador
           </div>
-          <div>
-            <Button
-              action={this.getFullClass}
-              buttonText={"Upload full class"}
-              className="add-button"
-            />
+          <div onClick={this.showStateSection}>
+            Estado del contador
           </div>
-        </div>
-        <div className="show-students">
-          {this.state.students.map(student => <p className="student-name">* {student}</p>)}
-        </div>
-        {this.state.students.length > 0 &&
-          <div className="split-container">
-            <hr />
-            <div className="split-button-options">
-              <ButtonsGroups
-                splitInGroups={this.splitInGroups}
-                halfLength={this.state.students.length / 2}
-              />
+          <div onClick={this.showFormSection}>
+            Cambiar valores
+          </div>
+        </nav>
+        {
+          this.state.showCounter &&
+          <div className='full-container'>
+            <div>
+              <h2 className='count-value'>{this.state.counter}</h2>
+              <div>
+                <button style={{
+                  width: '150px',
+                  height: '150px',
+                  'margin-right': '40px'
+                  }} onClick={this.increase}>
+                  +
+                  </button>
+                <button style={{
+                  width: '150px',
+                  height: '150px',
+                  'margin-right': '40px'
+                  }} onClick={this.decrease}>
+                  -
+                </button>
+              </div>
             </div>
-            <hr />
-            <div className="groups-displayed">
-              {this.state.splittedGroups.map(group =>
-                <p className="student-name">{group.map(person =>
-                  ` - ${person}`)}
-                </p>
-              )}
+          </div>
+        }
+        {
+          this.state.showState &&
+          <div className='full-container'>
+            <div>
+              <h2 className='count-value'>{this.state.counter}</h2>
+              <h3 className='current-value'>Valor actual</h3>
+            </div>
+          </div>
+        }
+        {
+          this.state.showForm &&
+          <div className='full-container'>
+            <div>
+              <h1 className='current-value'>Puedes cambiar el valor del contador</h1>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div>
+                  <input
+                    className='input-counter'
+                    value={this.state.counter}
+                    onChange={(e) => this.setState({ counter: Number(e.target.value) })}
+                    placeholder='Nuevo valor...'
+                  />
+                  <button>Aceptar</button>
+                </div>
+              </div>
             </div>
           </div>
         }

@@ -42,13 +42,13 @@ class App extends Component {
       <div>
         <nav>
           <div onClick={this.showCounterSection}>
-            Contador
+            My counter
           </div>
           <div onClick={this.showStateSection}>
-            Estado del contador
+            Counter state
           </div>
           <div onClick={this.showFormSection}>
-            Cambiar valores
+            Change values
           </div>
         </nav>
         {
@@ -80,7 +80,7 @@ class App extends Component {
           <div className='full-container'>
             <div>
               <h2 className='count-value'>{this.state.counter}</h2>
-              <h3 className='current-value'>Valor actual</h3>
+              <h3 className='current-value'>Current value</h3>
             </div>
           </div>
         }
@@ -88,16 +88,16 @@ class App extends Component {
           this.state.showForm &&
           <div className='full-container'>
             <div>
-              <h1 className='current-value'>Puedes cambiar el valor del contador</h1>
+              <h1 className='current-value'>You can change counter value here</h1>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div>
                   <input
                     className='input-counter'
                     value={this.state.counter}
                     onChange={(e) => this.setState({ counter: Number(e.target.value) })}
-                    placeholder='Nuevo valor...'
+                    placeholder='New value...'
                   />
-                  <button>Aceptar</button>
+                  <button>Accept</button>
                 </div>
               </div>
             </div>
